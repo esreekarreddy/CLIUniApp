@@ -1,0 +1,30 @@
+[
+  {
+    "id": "725707",
+    "name": "sr",
+    "email": "sr@university.com",
+    "password": "Sreekar@12344",
+    "subjects": [
+      {
+        "id": "945",
+        "mark": 89,
+        "grade": "HD"
+      },
+      {
+        "id": "903",
+        "mark": 58,
+        "grade": "P"
+      },
+      {
+        "id": "706",
+        "mark": 25,
+        "grade": "Z"
+      },
+      {
+        "id": "853",
+        "mark": 40,
+        "grade": "Z"
+      }
+    ]
+  }
+]

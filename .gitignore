@@ -1,0 +1,36 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Python virtual environment (if any)
+.venv/
+venv/
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore Python bytecode files
+*.py[cod]
+
+# Ignore environment variable files
+.env
+
+# Ignore database files
+*.sqlite3
+
+# Ignore coverage reports
+.coverage
+
+# Ignore test results
+*.xml
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore IDE-specific files (VS Code, JetBrains, etc.)
+.vscode/
+.idea/
+
+# Ignore Python cache files
+__pycache__/
+.pytest_cache
+*.pyc
