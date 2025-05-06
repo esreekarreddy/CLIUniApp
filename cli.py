@@ -32,6 +32,7 @@ def university_menu() -> None:
         elif choice == "s":
             student_menu()
         elif choice == "x":
+            print("Thank you for using the University System. Goodbye!")
             break
         else:
             print("Invalid option.")
@@ -51,13 +52,21 @@ def student_menu() -> None:
         choice = input("Select option: ").strip().lower()
 
         if choice == "r":
+            print("\nStudent Sign Up")
             name = input("Name: ")
             email = input("Email: ")
             pw = input("Password: ")
             ok, res = controller.register(name, email, pw)
-            print(res if not ok else f"Registered! Your ID is {res.id}")
+            if ok:
+                print("Email and password formats acceptable")
+                print(f"Enrolling Student {name}")
+                print("Successful")
+                print(f"Registered! Your ID is {res.id}")
+            else:
+                print(res)
 
         elif choice == "l":
+            print("\nStudent Sign In")
             ok, stu = controller.login(input("Email: "), input("Password: "))
             if ok:
                 subject_menu(stu, controller)
@@ -65,6 +74,7 @@ def student_menu() -> None:
                 print("Login failed. Please try again.")
 
         elif choice == "x":
+            print("You have now returned to main menu.")
             break
         else:
             print("Invalid option.")
@@ -85,7 +95,7 @@ def subject_menu(student, controller) -> None:
 
         if ch == "c":
             if student.change_password(input("Old: "), input("New: ")):
-                print("Password changed.")
+                print("Password updated successfully.")
                 save(controller.students)  # persist updates
             else:
                 print("Password change failed.")
@@ -95,27 +105,41 @@ def subject_menu(student, controller) -> None:
             print(msg if not ok else f"Enrolled in subject {msg.id}.")
             if ok:
                 save(controller.students)          # persist
+                print(f"You are now enrolled in {len(student.subjects)} out of 4 subjects")
 
         elif ch == "r":
             if not student.subjects:
                 print("You have no subjects to remove.")
             else:
                 sid = input("Subject ID: ")
-                removed = student.remove_subject(sid)
-                print("Removed." if removed else "Subject ID not found.")
-                if removed:
-                    save(controller.students)      # persist
+                # Check if subject exists
+                subject_exists = any(s.id == sid for s in student.subjects)
+                
+                if subject_exists:
+                    print(f"Dropping subject - {sid}")
+                    student.remove_subject(sid)
+                    save(controller.students)  # persist
+                    
+                    print("Showing available subjects")
+                    if student.subjects:
+                        for s in student.subjects:
+                            print(f"subject:{s.id} -- mark:{s.mark} -- grade = {s.grade}")
+                    else:
+                        print("No subjects remaining.")
+                else:
+                    print("Subject ID not found.")
 
         elif ch == "s":
             if not student.subjects:
                 print("No subjects enrolled.")
             else:
-                print(" ID   Mark  Grade")
+                print(f"Showing {len(student.subjects)} subjects")
                 for s in student.subjects:
-                    print(s)
+                    print(f"subject:{s.id} -- mark:{s.mark} -- grade = {s.grade}")
 
         elif ch == "x":
             save(controller.students)  # persist updates
+            print("Logging you out. You have now returned to Student System.")
             break
         else:
             print("Invalid option.")
@@ -144,8 +168,9 @@ def admin_menu() -> None:
             if not students:
                 print("No students in the database.")
             else:
+                print("\nStudent List")
                 for s in students:
-                    print(f"{s.id}  {s.name:20}  subjects:{len(s.subjects)}")
+                    print(f"Student {s.name} :: {s.id} --> Email :: {s.email}")
 
         # ---- group by grade -----------------------------------
         elif ch == "g":
@@ -153,9 +178,13 @@ def admin_menu() -> None:
             if not grouped:
                 print("No enrolments available to group.")
             else:
-                for grade, sts in grouped.items():
-                    names = ", ".join(s.name for s in sts)
-                    print(f"{grade}: {names}")
+                print("\nGrade Grouping")
+                for grade, students in grouped.items():
+                    print(f"{grade} --> [", end="")
+                    student_info = []
+                    for s in students:
+                        student_info.append(f"Student {s.name} :: {s.id} --> Grade - {s.overall_grade} - Avg:{s.average_mark:.2f}")
+                    print(", ".join(student_info), end="]\n")
 
         # ---- partition pass / fail ----------------------------
         elif ch == "p":
@@ -163,8 +192,16 @@ def admin_menu() -> None:
             if not any(pf.values()):
                 print("No students to partition.")
             else:
-                print("PASS:", [s.name for s in pf["PASS"]])
-                print("FAIL:", [s.name for s in pf["FAIL"]])
+                print("\nPass/Fail Partition")
+                for category, students in pf.items():
+                    if students:
+                        print(f"{category}: [", end="")
+                        student_info = []
+                        for s in students:
+                            student_info.append(f"Student {s.name} :: {s.id} --> Grade - {s.overall_grade} - Avg:{s.average_mark:.2f}")
+                        print(", ".join(student_info), end="]\n")
+                    else:
+                        print(f"{category}: []")
         
         # ---- remove student -----------------------------------
         elif ch == "r":
@@ -173,7 +210,10 @@ def admin_menu() -> None:
             else:
                 sid = input("Student ID: ")
                 ok = admin.remove_student(sid)
-                print("Removed." if ok else "ID not found.")
+                if ok:
+                    print(f"Student {sid} is removed")
+                else:
+                    print(f"Student {sid} is not found")
 
         # ---- clear database -----------------------------------
         elif ch == "c":
@@ -182,6 +222,7 @@ def admin_menu() -> None:
 
         # ---- exit admin menu ----------------------------------
         elif ch == "x":
+            print("You have now returned to main menu.")
             break
         else:
             print("Invalid option.")

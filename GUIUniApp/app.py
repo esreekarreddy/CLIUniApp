@@ -1,7 +1,15 @@
 import tkinter as tk
-from GUIUniApp.login_win import LoginWindow
-from GUIUniApp.enrol_win import EnrolmentWindow
 from controllers.student_controller import StudentController
+
+try:
+    from GUIUniApp.login_win import LoginWindow
+    from GUIUniApp.enrol_win import EnrolmentWindow
+    from GUIUniApp.theme import apply_theme_to_window
+except ImportError:
+    # When running directly in GUIUniApp directory
+    from login_win import LoginWindow
+    from enrol_win import EnrolmentWindow
+    from theme import apply_theme_to_window
 
 class UniApp:
     """Application class to manage window transitions"""
@@ -11,6 +19,10 @@ class UniApp:
         self.root.title("University Application")
         self.controller = StudentController()
         self.current_frame = None
+        
+        # Apply consistent theme
+        apply_theme_to_window(root)
+        
         self.show_login()
     
     def show_login(self):
