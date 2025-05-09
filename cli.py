@@ -8,12 +8,11 @@ Text-menu front-end for CLIUniApp.
 • Subject menu    (enrol / remove / show / change-pw)
 • Admin menu      (show / group / partition / remove / clear)
 
-Wording and option letters follow the sample I/O.
 """
 
 from controllers.student_controller import StudentController
 from controllers.admin_controller import AdminController
-from data.database import save  # persist when student logs out
+from data.database import save  
 
 
 # ──────────────────────────────────────────────────────────────

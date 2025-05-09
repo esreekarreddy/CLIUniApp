@@ -1,29 +1,29 @@
 [
   {
-    "id": "725707",
+    "id": "739673",
     "name": "sr",
     "email": "sr@university.com",
-    "password": "Srjslj@167367",
+    "password": "SOUEJHJ@1897987",
     "subjects": [
       {
-        "id": "170",
-        "mark": 55,
-        "grade": "P"
+        "id": "356",
+        "mark": 80,
+        "grade": "D"
       },
       {
-        "id": "878",
-        "mark": 98,
+        "id": "389",
+        "mark": 93,
         "grade": "HD"
       },
       {
-        "id": "496",
-        "mark": 46,
-        "grade": "Z"
+        "id": "439",
+        "mark": 91,
+        "grade": "HD"
       },
       {
-        "id": "440",
-        "mark": 54,
-        "grade": "P"
+        "id": "278",
+        "mark": 77,
+        "grade": "D"
       }
     ]
   }

@@ -22,7 +22,7 @@ A comprehensive Python-based interactive university enrollment system with both 
 
 ## 📋 Requirements
 
-- Python 3.9+ (tested on 3.9.18)
+- Python 3.13.3 (tested on 3.13.3)
 - No external packages required beyond the standard library
 
 ## 🚀 Installation & Running
@@ -64,7 +64,6 @@ CLIUniApp/                  # project root
 │   └── test_validation.py  # Input validation tests
 └── GUIUniApp/              # standalone GUI package
     ├── main_gui.py         # GUI entry point
-    ├── app.py              # Main app controller
     ├── login_win.py        # Login window
     ├── enrol_win.py        # Enrollment window
     ├── subject_win.py      # Subject list window
@@ -132,8 +131,6 @@ pytest
 # Run with detailed output:
 pytest -v
 
-# Generate HTML report:
-pytest --html=tests/report.html --self-contained-html
 ```
 
 ### Test Coverage
