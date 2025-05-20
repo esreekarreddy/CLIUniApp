@@ -1,5 +1,12 @@
 # UniApp - University Enrollment System
 
+| Team Member | Student ID |
+|-------------|------------|
+| Chandan Sreenivasaiah | 25674250 |
+| Vaibhav Bairathi | 25534645 |
+| Luis Lara Mora | 25675859 |
+| Sreekar Reddy Edulapalli | 25617806 |
+
 A comprehensive Python-based interactive university enrollment system with both command-line and graphical interfaces:
 
 - **CLIUniApp**: Command-line interface for Student and Admin subsystems with enhanced user feedback
@@ -175,6 +182,30 @@ All data is stored in JSON format in `data/students.data`:
 - Defensive programming with input validation
 - Error handling with appropriate user feedback
 
----
+## Team Contributions
+
+### Vaibhav Bairathi
+- **Domain Models**: Implemented Student and Subject classes with proper encapsulation
+- **GUI - Login Interface**: Developed the authentication window with validation
+- **Documentation**: Detailed model specifications and validation rules
+
+### Luis Lara Mora
+- **CLI Interface**: Designed and implemented the command-line interface
+- **GUI - Enrollment Interface**: Created the subject enrollment window
+- **User Experience**: Implemented intuitive menu navigation and feedback
+
+### Chandan Sreenivasaiah
+- **Controllers**: Developed StudentController and AdminController
+- **GUI - Subject Display**: Created the subject visualization window with grade coloring
+- **Business Logic**: Implemented core application workflows
+
+### Sreekar Reddy Edulapalli
+- **Data Persistence**: Designed JSON-based database system
+- **Testing Framework**: Created comprehensive test suite with pytest
+- **Utility Functions**: Developed validation and ID generation utilities
+- **GUI - Theme System**: Implemented application theming and popup management
+
+## Group Contribution
+- **Project Integration**: Ensured consistency across components
 
 
